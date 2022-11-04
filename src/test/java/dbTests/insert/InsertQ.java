@@ -82,4 +82,19 @@ public class InsertQ extends DbHelper {
             throw new RuntimeException(e);
         }
     }
+    @Test(description = "Select from db productlines table", enabled = true)
+    public void insertProductlines() {
+        try {
+            String query = "INSERT INTO classicmodels.productlines VALUES ('Cars',null, null,null)";
+            stmt.executeUpdate(query);
+            String query2 = "SELECT * FROM classicmodels.productlines WHERE productLine = 'Cars';";
+            ResultSet results2 = stmt.executeQuery(query2);
+            while (results2.next()) {
+                System.out.println(results2.getString("productLine"));
+                Assert.assertEquals(results2.getString("productLine"), "Cars");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

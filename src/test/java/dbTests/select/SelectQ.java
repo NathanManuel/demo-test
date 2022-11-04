@@ -68,4 +68,17 @@ public class SelectQ extends DbHelper {
             throw new RuntimeException(e);
         }
     }
+
+    @Test(description = "Select from db productlines table", enabled = true)
+    public void selectProductlines() {
+        try {
+            String query = "SELECT * FROM classicmodels.productlines WHERE productLine = 'Cars';";
+            ResultSet results = stmt.executeQuery(query);
+            while (results.next()) {
+                Assert.assertTrue(results.getString("productLine").contains("Cars"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
